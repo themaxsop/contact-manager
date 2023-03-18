@@ -55,14 +55,22 @@ Network Services:
 
 Route:
 
-- Routes name
-- Routes
+- Create __routes_name.dart__ file into *utils/routes* directory
+- Create __routes.dart__ file into *utils/routes* directory
+
+Utils:
+
+- Add custom messages into *utils.dart* file from __utils__ directory
+  - Toast Message
+  - Error Message using *Flushbar*
+  - Snackbar
+
+Create *toastMessage* using __fluttertoast__ package & *snackBar* using __snackbar__ methods for message. And *errorMessage* using __another_flushbar__ package method for error message.
 
 Install Package:
 
 - fluttertoast
 - another_flushbar
-
-Create *toastMessage* using __fluttertoast__ package & *snackBar* using __snackbar__ methods for message. And *errorMessage* using __another_flushbar__ package method for error message.
+- http
 
 [Tutorial](https://www.youtube.com/playlist?list=PLFyjjoCMAPty6KBBqiwwbIU07wFIItYyH)
