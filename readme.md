@@ -1,8 +1,20 @@
-# Contact manager
+# Flutter MVVM Architecture With Rest APIs Using Provider With Solid Principles
 
-Flutter MVVM Architecture With Rest APIs Using Provider With Solid Principles.
+Topic:
 
-## Step 1: Directory Structure
+- Road Map
+- What is MVVM Architecture
+- Handle App Exceptions
+- Handle App APIs Response
+- Network APIs Services
+- Named Routes
+- Utils
+- Login View & View Model
+- Sign Up View & View Model
+- Manage User Session
+- GET APIs
+
+## Directory Structure
 
 - data
   - network
@@ -12,27 +24,45 @@ Flutter MVVM Architecture With Rest APIs Using Provider With Solid Principles.
 - res
 - repository
 - utils
-  - Route
-    - routes
-    - routes_name
 - view
 - view_model
 - main.dart
 
-## Steps 2: Configure route
+## Steps
+
+Exception Handle:
+
+- Add exceptions into *app_exceptions.dart*
+  - Fetch data error
+  - Invalid input
+  - Bad request
+  - Unauthorized
+
+API Response:
+
+- Create status enum for loading, completed and error into *response/status.dart*
+- Create APIResponse into *response/api_response.dart*
+
+Network Services:
+
+- Create "Base API Service" into *network/base_api_service.dart*
+  - Create abstract methor for GET
+  - Create abstract methor for POST
+  - Create abstract methor for PUT
+  - Create abstract methor for PETCH
+  - Create abstract methor for DELETE
+- Create "Network API Service" into *network/network_api_service.dart*
 
 Route:
 
 - Routes name
 - Routes
 
-## Step 3: Handle messages
-
 Install Package:
 
 - fluttertoast
 - another_flushbar
 
-Create utils.dart file in __utils__ directory.
-
 Create *toastMessage* using __fluttertoast__ package & *snackBar* using __snackbar__ methods for message. And *errorMessage* using __another_flushbar__ package method for error message.
+
+[Tutorial](https://www.youtube.com/playlist?list=PLFyjjoCMAPty6KBBqiwwbIU07wFIItYyH)
