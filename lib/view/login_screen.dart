@@ -1,3 +1,4 @@
+import 'package:contact_app/res/components/submit_button.dart';
 import 'package:contact_app/utils/routes/routes_name.dart';
 import 'package:contact_app/utils/utils.dart';
 import 'package:flutter/material.dart';
@@ -19,13 +20,30 @@ class _LoginScreenState extends State<LoginScreen> {
   FocusNode passwordFocusNode = FocusNode();
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+
+    _emailController.dispose();
+    _passwordController.dispose();
+
+    emailFocusNode.dispose();
+    passwordFocusNode.dispose();
+
+    _passwordVisibility.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final gap = MediaQuery.of(context).size.height;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Login"),
       ),
       body: SafeArea(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextFormField(
               controller: _emailController,
@@ -59,6 +77,24 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
               ),
+            ),
+            SizedBox(
+              height: gap * 0.1,
+            ),
+            SubmitButton(
+              title: 'Login',
+              onPress: () {
+                if (_emailController.text.isEmpty) {
+                  Utils.errorMessage('Please enter email', context);
+                } else if (_passwordController.text.isEmpty) {
+                  Utils.errorMessage('Please enter password', context);
+                } else if (_passwordController.text.length < 6) {
+                  Utils.errorMessage(
+                      'Password must have 6 alphanumaric characters.', context);
+                } else {
+                  print('API hit');
+                }
+              },
             ),
           ],
         ),
