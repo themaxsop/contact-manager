@@ -25,8 +25,8 @@ class SubmitButton extends StatelessWidget {
         ),
         child: Center(
           child: loading
-              ? CircleAvatar()
-              : Text('The name', style: TextStyle(color: AppColors.white)),
+              ? const CircularProgressIndicator(color: Colors.white)
+              : Text(title, style: const TextStyle(color: AppColors.white)),
         ),
       ),
     );

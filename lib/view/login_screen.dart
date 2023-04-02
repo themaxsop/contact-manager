@@ -1,7 +1,8 @@
 import 'package:contact_app/res/components/submit_button.dart';
-import 'package:contact_app/utils/routes/routes_name.dart';
 import 'package:contact_app/utils/utils.dart';
+import 'package:contact_app/view_model/auth_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -21,7 +22,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
 
     _emailController.dispose();
@@ -35,6 +35,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final authViewModel = Provider.of<AuthViewModel>(context);
     final gap = MediaQuery.of(context).size.height;
 
     return Scaffold(
@@ -78,11 +79,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
             ),
-            SizedBox(
-              height: gap * 0.1,
-            ),
+            SizedBox(height: gap * 0.1),
             SubmitButton(
               title: 'Login',
+              loading: authViewModel.loading,
               onPress: () {
                 if (_emailController.text.isEmpty) {
                   Utils.errorMessage('Please enter email', context);
@@ -92,6 +92,15 @@ class _LoginScreenState extends State<LoginScreen> {
                   Utils.errorMessage(
                       'Password must have 6 alphanumaric characters.', context);
                 } else {
+                  // Data
+                  Map data = {
+                    "email": _emailController.text.toString(),
+                    "password": _passwordController.text.toString()
+                  };
+
+                  // Call login
+                  authViewModel.login(data, context);
+
                   print('API hit');
                 }
               },
